@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Highview | Private Circle</title>
+    <meta
+      name="description"
+      content="Highview is a private investing circle built on research, discipline, and conviction."
+    />
+    <link rel="icon" type="image/svg+xml" href="./assets/highview-eagle.svg" />
+    <meta property="og:title" content="Highview | Private Circle" />
+    <meta
+      property="og:description"
+      content="Highview is a private investing circle built on research, discipline, and conviction."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://highview.us/assets/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Highview | Private Circle" />
+    <meta
+      name="twitter:description"
+      content="Highview is a private investing circle built on research, discipline, and conviction."
+    />
+    <meta name="twitter:image" content="https://highview.us/assets/og-image.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-smoke smoke-a" aria-hidden="true"></div>
+    <div class="bg-smoke smoke-b" aria-hidden="true"></div>
+    <div class="bg-smoke smoke-c" aria-hidden="true"></div>
+    <div class="bg-spotlight" aria-hidden="true"></div>
+
+    <main class="page">
+      <section class="hero">
+        <div class="headline-wrap reveal">
+          <img
+            src="./assets/highview-eagle.svg"
+            alt=""
+            class="hero-logo-bg"
+            aria-hidden="true"
+          />
+          <h1 class="headline" aria-label="Highview">
+            <span class="wordmark-line">HIGH</span>
+            <span class="wordmark-line">VIEW</span>
+          </h1>
+        </div>
+
+        <p class="tagline reveal">Private Circle</p>
+
+        <button
+          id="formToggle"
+          class="toggle-btn reveal"
+          aria-controls="formOverlay"
+          aria-expanded="false"
+          type="button"
+        >
+          Holla
+        </button>
+      </section>
+
+      <p class="legal reveal">
+        Informal educational community only. No investment, legal, or tax advice.
+      </p>
+    </main>
+
+    <section class="form-overlay" id="formOverlay" aria-hidden="true">
+      <button
+        type="button"
+        class="overlay-backdrop"
+        data-close-overlay
+        aria-label="Close form"
+      ></button>
+      <div class="form-modal" role="dialog" aria-modal="true" aria-label="Contact form">
+        <button
+          type="button"
+          class="close-btn"
+          id="formClose"
+          aria-label="Close form"
+        >
+          x
+        </button>
+        <!-- Replace `your-form-id` with your real Formspree form ID -->
+        <form
+          action="https://formspree.io/f/mgolbvej"
+          method="POST"
+          class="contact-form"
+        >
+          <input
+            type="text"
+            name="_gotcha"
+            class="hp"
+            tabindex="-1"
+            autocomplete="off"
+          />
+          <input type="hidden" name="_subject" value="Highview access request" />
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            aria-label="Name"
+            placeholder="Name"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            aria-label="Email"
+            placeholder="Email"
+            required
+          />
+          <textarea
+            name="message"
+            rows="4"
+            aria-label="Message"
+            placeholder="Message"
+            required
+          ></textarea>
+          <button type="submit" class="submit-btn" aria-label="Send">→</button>
+        </form>
+      </div>
+    </section>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
