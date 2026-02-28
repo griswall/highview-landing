@@ -5,6 +5,9 @@ const closeBtn = document.getElementById("formClose");
 const backdrop = document.querySelector("[data-close-overlay]");
 const page = document.querySelector(".page");
 const headlineWrap = document.querySelector(".headline-wrap");
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+const submitBtn = contactForm ? contactForm.querySelector(".submit-btn") : null;
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -40,6 +43,57 @@ const toggleOverlay = () => {
     closeOverlay();
   } else {
     openOverlay();
+  }
+};
+
+const setFormStatus = (message, kind = "") => {
+  if (!formStatus) return;
+  formStatus.textContent = message;
+  formStatus.className = kind ? `form-status ${kind}` : "form-status";
+};
+
+const submitForm = async (event) => {
+  event.preventDefault();
+  if (!contactForm || !submitBtn) return;
+
+  setFormStatus("");
+  submitBtn.disabled = true;
+
+  const originalButtonText = submitBtn.textContent;
+  submitBtn.textContent = "…";
+
+  const formData = new FormData(contactForm);
+
+  try {
+    const response = await fetch(contactForm.action, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (response.ok) {
+      contactForm.reset();
+      setFormStatus("Success. We will reach out soon.", "success");
+      return;
+    }
+
+    let errorMessage = "Could not submit. Please try again.";
+    try {
+      const payload = await response.json();
+      if (payload?.errors?.length) {
+        errorMessage = payload.errors.map((item) => item.message).join(" ");
+      }
+    } catch (_error) {
+      // Ignore parse failures and show generic message.
+    }
+    setFormStatus(errorMessage, "error");
+  } catch (_error) {
+    setFormStatus("Network error. Please try again.", "error");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalButtonText;
   }
 };
 
@@ -83,4 +137,8 @@ window.addEventListener("keydown", (event) => {
 
 if (page && headlineWrap) {
   window.addEventListener("mousemove", setMotion);
+}
+
+if (contactForm) {
+  contactForm.addEventListener("submit", submitForm);
 }
