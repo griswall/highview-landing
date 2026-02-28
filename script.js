@@ -5,6 +5,7 @@ const closeBtn = document.getElementById("formClose");
 const backdrop = document.querySelector("[data-close-overlay]");
 const page = document.querySelector(".page");
 const headlineWrap = document.querySelector(".headline-wrap");
+const formModal = document.querySelector(".form-modal");
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 const submitBtn = contactForm ? contactForm.querySelector(".submit-btn") : null;
@@ -23,7 +24,17 @@ const observer = new IntersectionObserver(
 
 revealItems.forEach((item) => observer.observe(item));
 
+const resetFormUi = () => {
+  if (!formModal || !contactForm || !submitBtn) return;
+  formModal.classList.remove("submitted");
+  setFormStatus("");
+  contactForm.reset();
+  submitBtn.disabled = false;
+  submitBtn.textContent = "→";
+};
+
 const openOverlay = () => {
+  resetFormUi();
   overlay.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
   toggleBtn.setAttribute("aria-expanded", "true");
@@ -74,8 +85,10 @@ const submitForm = async (event) => {
     });
 
     if (response.ok) {
-      contactForm.reset();
-      setFormStatus("Success. We will reach out soon.", "success");
+      if (formModal) {
+        formModal.classList.add("submitted");
+      }
+      setFormStatus("");
       return;
     }
 

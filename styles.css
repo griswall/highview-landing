@@ -238,6 +238,10 @@ body.overlay-open {
   gap: 0.75rem;
 }
 
+.form-modal.submitted .contact-form {
+  display: none;
+}
+
 .contact-form input,
 .contact-form textarea {
   width: 100%;
@@ -296,6 +300,37 @@ body.overlay-open {
 
 .form-status.error {
   color: #ffb9b9;
+}
+
+.form-success {
+  display: none;
+  min-height: 280px;
+  margin-top: 1.8rem;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 0.7rem;
+}
+
+.form-modal.submitted .form-success {
+  display: grid;
+}
+
+.form-success-title {
+  margin: 0;
+  font-family: "Archivo Black", sans-serif;
+  font-size: clamp(2.8rem, 9vw, 5.6rem);
+  line-height: 0.9;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.18);
+}
+
+.form-success-copy {
+  margin: 0;
+  font-size: 1rem;
+  color: #c8c8c8;
 }
 
 .hp {
